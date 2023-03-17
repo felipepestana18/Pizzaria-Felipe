@@ -34,7 +34,7 @@ namespace Pizzaria.PizzaAPI.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<ActionResult<PizzaVO>> Save([FromBody] PizzaVO model)
+        public async Task<ActionResult<PizzaVO>> Create([FromBody] PizzaVO model)
         {
 
             var pizza = await _Pizzarepository.Create(model);
