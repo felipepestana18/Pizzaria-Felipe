@@ -5,9 +5,11 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.PizzaAPI", "Pizzaria.PizzaAPI\Pizzaria.PizzaAPI.csproj", "{8BDE2F29-E4F3-4879-917C-ABB7B02815AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.BebidaAPI", "Pizzaria.Bebida\Pizzaria.BebidaAPI.csproj", "{4048E3F5-14F8-43BE-AB74-B11FFC75D11B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.BebidaAPI", "Pizzaria.Bebida\Pizzaria.BebidaAPI.csproj", "{4048E3F5-14F8-43BE-AB74-B11FFC75D11B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.ClienteAPI", "Pizzaria.ClienteAPI\Pizzaria.ClienteAPI.csproj", "{95D4F1BA-9296-4251-A7BC-E587B391C906}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pizzaria.ClienteAPI", "Pizzaria.ClienteAPI\Pizzaria.ClienteAPI.csproj", "{95D4F1BA-9296-4251-A7BC-E587B391C906}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pizzaria.PedidoAPI", "Pizzaria.PedidoAPI\Pizzaria.PedidoAPI.csproj", "{56D5C3BC-8DD3-4BF7-8DCF-1BA29870727D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{95D4F1BA-9296-4251-A7BC-E587B391C906}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95D4F1BA-9296-4251-A7BC-E587B391C906}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95D4F1BA-9296-4251-A7BC-E587B391C906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56D5C3BC-8DD3-4BF7-8DCF-1BA29870727D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D5C3BC-8DD3-4BF7-8DCF-1BA29870727D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D5C3BC-8DD3-4BF7-8DCF-1BA29870727D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D5C3BC-8DD3-4BF7-8DCF-1BA29870727D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

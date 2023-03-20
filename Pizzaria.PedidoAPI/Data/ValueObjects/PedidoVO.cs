@@ -3,7 +3,7 @@ using Pizzaria.PizzaAPI.Model;
 
 namespace Pizzaria.PedidoAPI.Model
 {
-    public class Pedido
+    public class PedidoVO
     {
         public int Id { get; set; }
 
@@ -19,11 +19,12 @@ namespace Pizzaria.PedidoAPI.Model
 
         public int QtdPizza { get; set; }
 
-        public Cliente Cliente { get; set; }
+        public ClienteVO Cliente { get; set; }
 
-        public List<Pizza> Pizzas { get; set; }
+        public List<PizzaVO> Pizzas { get; set; }
 
-        public List<Bebida>  Bebidas { get; set; }
+        public List<BebidaVO>  Bebidas { get; set; }
+
 
 
     }
