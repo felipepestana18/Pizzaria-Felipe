@@ -48,11 +48,10 @@ namespace Pizzaria.PedidoAPI.Controllers
         }
 
         [HttpDelete("delete")]
-        public async Task<ActionResult<PedidoVO>> Delete(int id)
+        public async Task<ActionResult<bool>> Delete(int id)
         {
 
-            var status = await _pedidoRepository.Delete(id);
-
+            bool status = await _pedidoRepository.Delete(id);
             if (!status) return BadRequest();
             return Ok(status);  
         }
