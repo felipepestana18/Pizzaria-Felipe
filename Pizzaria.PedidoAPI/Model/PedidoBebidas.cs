@@ -2,9 +2,9 @@
 {
     public class PedidoBebidas
     {
-        public  int IdPedido { get; set; }
+        public int IdPedido { get; set; }
 
-        public List<int> IdBebidas { get; set; }
+        public int IdBebida { get; set; }
 
     }
 }

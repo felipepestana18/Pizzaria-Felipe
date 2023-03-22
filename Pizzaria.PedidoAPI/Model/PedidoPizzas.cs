@@ -4,6 +4,6 @@
     {
         public int IdPedido { get; set; }
 
-        List<int> IdPizzas { get; set; } 
+        public int IdPizza { get; set; } 
     }
 }

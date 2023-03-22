@@ -15,7 +15,7 @@ namespace Pizzaria.PedidoAPI.Repository
 
         Task<PedidoVO> Update(PedidoVO vo);
 
-        Task<PedidoVO> Delete(int id);
+        Task<bool> Delete(int id);
 
     }
 }
