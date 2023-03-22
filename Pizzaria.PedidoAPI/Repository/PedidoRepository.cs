@@ -171,7 +171,6 @@ namespace Pizzaria.PedidoAPI.Repository
                 }
 
                 bebidas = await _context.PedidoBebidas.AsNoTracking().Where(p => p.IdPedido == pedido.Id).ToListAsync();
-
                 if (bebidas != null)
                 {
                     foreach (var bebida in bebidas)

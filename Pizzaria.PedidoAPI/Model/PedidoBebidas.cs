@@ -1,10 +1,13 @@
-﻿namespace Pizzaria.PedidoAPI.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Pizzaria.PedidoAPI.Model
 {
     public class PedidoBebidas
     {
-        public int IdPedido { get; set; }
-
+        [Key]
         public int IdBebida { get; set; }
+     
+        public int IdPedido { get; set; }
 
     }
 }

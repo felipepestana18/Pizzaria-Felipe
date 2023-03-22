@@ -24,6 +24,8 @@ builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttri
 
 
 
+
+
 builder.Services.AddScoped<IPizzaRepository, PizzariaRepository>();
 
 builder.Services.AddSwaggerGen();
