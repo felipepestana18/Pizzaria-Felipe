@@ -28,6 +28,9 @@ namespace Pizzaria.PedidoAPI.Migrations
                     b.Property<DateTime>("DataPedido")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("IdCliente")
+                        .HasColumnType("int");
+
                     b.Property<int>("QtdBebidas")
                         .HasColumnType("int");
 
@@ -48,7 +51,7 @@ namespace Pizzaria.PedidoAPI.Migrations
                     b.ToTable("Pedidos");
                 });
 
-            modelBuilder.Entity("Pizzaria.PedidoAPI.Model.PedidoBebidas", b =>
+            modelBuilder.Entity("Pizzaria.PedidoAPI.Model.PedidoBebida", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +68,7 @@ namespace Pizzaria.PedidoAPI.Migrations
                     b.ToTable("PedidoBebidas");
                 });
 
-            modelBuilder.Entity("Pizzaria.PedidoAPI.Model.PedidoPizzas", b =>
+            modelBuilder.Entity("Pizzaria.PedidoAPI.Model.PedidoPizza", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

@@ -5,7 +5,7 @@ using Pizzaria.ClienteAPI.Repository;
 namespace Pizzaria.ClienteAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/v1/Cliente/")]
     public class ClienteController : Controller
     {
         readonly IClienteRepository _clienteRepository;

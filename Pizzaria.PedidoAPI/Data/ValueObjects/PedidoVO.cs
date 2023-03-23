@@ -11,7 +11,6 @@ namespace Pizzaria.PedidoAPI.Model
 
         public int Status { get; set; }
 
-        public int QtdPedido { get; set; }
 
         public decimal TotalPedido { get; set; }
 
@@ -19,11 +18,11 @@ namespace Pizzaria.PedidoAPI.Model
 
         public int QtdPizza { get; set; }
 
-        public ClienteVO Cliente { get; set; }
+        public Cliente Cliente { get; set; }
 
-        public List<PizzaVO> Pizzas { get; set; }
+        public List<Pizza> Pizzas { get; set; }
 
-        public List<BebidaVO>  Bebidas { get; set; }
+        public List<Bebida>  Bebidas { get; set; }
 
 
 

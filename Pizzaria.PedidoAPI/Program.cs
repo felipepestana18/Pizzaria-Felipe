@@ -37,7 +37,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(c =>
 {
     c.EnableAnnotations();
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pizzaria.PizzaApi" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pizzaria.PedidoApi" });
 
 });
 // Add services to the container.

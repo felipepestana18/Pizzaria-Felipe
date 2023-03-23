@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Pizzaria.ClienteAPI.Model;
 using Pizzaria.PedidoAPI.Model;
 using Pizzaria.PedidoAPI.Services.IServices;
 using Pizzaria.PizzaAPI.Model;
@@ -34,16 +35,21 @@ namespace Pizzaria.PedidoAPI.Repository
         {
             var pedidoFeito = new Pedido();
             List<Pedido> pedidos = new List<Pedido>();
-            var buscarPedidos = _context.Pedidos.Find();
+            List<Pedido> pedidosRetorno = new List<Pedido>();
+
+            var buscarPedidos = await _context.Pedidos.ToListAsync();
             if (buscarPedidos != null)
             {
-                pedidos.Add(buscarPedidos);
-
+                pedidos = buscarPedidos;
+                
                 foreach (var pedido in pedidos)
                 {
 
+                    pedido.Cliente = await _clienteService.GetClienteById(pedido.IdCliente);
+
                     if (pedido != null)
                     {
+
                         var IdPizzas = await _context.PedidoPizzas.AsNoTracking().Where(c => c.IdPedido == pedido.Id).ToListAsync();
                         var IdBebidas = await _context.PedidoBebidas.AsNoTracking().Where(c => c.IdPedido == pedido.Id).ToListAsync();
 
@@ -51,42 +57,32 @@ namespace Pizzaria.PedidoAPI.Repository
                         {
                             List<Pizza> pizzas = new List<Pizza>();
                             List<Bebida> bebidas = new List<Bebida>();
-                            decimal totalPedidoPizza = 0;
 
-                            foreach (var Idpizza in IdPizzas)
+                            foreach (var id in IdPizzas)
                             {
-                                var pizza = await _pizzaService.GetPizzaById(Convert.ToInt32(pedido.Id));
+                                var pizza = await _pizzaService.GetPizzaById(Convert.ToInt32(id.IdPizza));
                                 pizzas.Add(pizza);
                             }
 
-                            foreach (var IdBebida in IdBebidas)
+                            foreach (var id in IdBebidas)
                             {
-                                var bebida = await _bebidaService.GetBebidaById(Convert.ToInt32(pedido.Id));
+                                var bebida = await _bebidaService.GetBebidaById(Convert.ToInt32(id.IdBebida));
                                 bebidas.Add(bebida);
 
                             }
 
-                            pedidoFeito.Pizzas = pizzas;
-                            pedidoFeito.Bebidas = bebidas;
 
-                            foreach (var bebida in pedido.Bebidas)
-                            {
-                                totalPedidoPizza += bebida.Preco;
-                                pedido.QtdBebidas++;
-
-                            }
-                            foreach (var pizza in pedido.Pizzas)
-                            {
-                                totalPedidoPizza += pizza.Preco;
-                                pedido.QtdPizza++;
-                            }
+                            pedido.Pizzas = pizzas;
+                            pedido.Bebidas = bebidas;
 
                         }
+                        pedidosRetorno.Add(pedido);
                     }
-
                 }
             }
-            return _mapper.Map<List<PedidoVO>>(pedidoFeito);
+
+            
+            return _mapper.Map<List<PedidoVO>>(pedidosRetorno);
 
         }
 
@@ -103,57 +99,70 @@ namespace Pizzaria.PedidoAPI.Repository
                 List<Pizza> pizzas = new List<Pizza>();
                 List<Bebida> bebidas = new List<Bebida>();
 
-
                 foreach (var IdBebida in IdBebidas)
                 {
                     Bebida bebida = await _bebidaService.GetBebidaById(Convert.ToInt32(IdBebida));
-                    pedido.TotalPedido += bebida.Preco;
                     bebidas.Add(bebida);
-                    pedido.QtdBebidas++;
                 }
 
 
                 foreach (var IdPizza in IdPizzas)
                 {
                     Pizza pizza = await _pizzaService.GetPizzaById(Convert.ToInt32(IdPizza));
-                    pedido.TotalPedido += pizza.Preco;
                     pizzas.Add(pizza);
-                    pedido.QtdPizza++;
                 }
 
+                pedido.Cliente =  await _clienteService.GetClienteById(pedido.IdCliente);
                 pedido.Bebidas = bebidas;
                 pedido.Pizzas = pizzas;
             }
-
             return _mapper.Map<PedidoVO>(pedido);
-
         }
 
 
         public async Task<PedidoVO> Create(PedidoVO vo)
         {
             Pedido pedidos = _mapper.Map<Pedido>(vo);
-            var pedidoPizzas = new PedidoPizzas();
-            var pedidoBebidas = new PedidoBebidas();
+            PedidoPizza pedidoPizzas = new PedidoPizza();
+            PedidoBebida pedidoBebidas = new PedidoBebida();
 
-            foreach (var pizza in pedidos.Pizzas)
-            {
-                pedidoPizzas.IdPedido = pedidos.Id;
-                pedidoPizzas.IdPizza = pizza.Id;
-                _context.PedidoPizzas.Add(pedidoPizzas);
-                await _context.SaveChangesAsync();
-            }
+            pedidos.IdCliente = pedidos.Cliente.Id;
+            pedidos.DataPedido = DateTime.Now;
 
             foreach (var bebida in pedidos.Bebidas)
             {
+                pedidos.TotalPedido += bebida.Preco;
+                pedidos.QtdBebidas++;
+            }
+
+            foreach (var pizza in pedidos.Pizzas)
+            {
+                pedidos.TotalPedido += pizza.Preco;
+                pedidos.QtdPizza++;
+            }
+
+            _context.Pedidos.Add(pedidos);
+            await _context.SaveChangesAsync();
+
+
+            foreach (var bebida in pedidos.Bebidas)
+            {
+                pedidoBebidas.Id = 0;
                 pedidoBebidas.IdPedido = pedidos.Id;
                 pedidoBebidas.IdBebida = bebida.Id;
                 _context.PedidoBebidas.Add(pedidoBebidas);
                 await _context.SaveChangesAsync();
 
             }
-            _context.Pedidos.Add(pedidos);
-            _context.SaveChanges();
+
+            foreach (var pizza in pedidos.Pizzas)
+            {
+                pedidoPizzas.Id = 0;
+                pedidoPizzas.IdPedido = pedidos.Id;
+                pedidoPizzas.IdPizza = pizza.Id;
+                _context.PedidoPizzas.Add(pedidoPizzas);
+                await _context.SaveChangesAsync();
+            }
 
             return _mapper.Map<PedidoVO>(pedidos);
         }
@@ -172,8 +181,8 @@ namespace Pizzaria.PedidoAPI.Repository
         {
 
             var pedido = await _context.Pedidos.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
-            List<PedidoPizzas> pizzas = new List<PedidoPizzas>();
-            List<PedidoBebidas> bebidas = new List<PedidoBebidas>();
+            List<PedidoPizza> pizzas = new List<PedidoPizza>();
+            List<PedidoBebida> bebidas = new List<PedidoBebida>();
 
 
             if (pedido != null)

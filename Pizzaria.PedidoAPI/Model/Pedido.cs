@@ -19,6 +19,9 @@ namespace Pizzaria.PedidoAPI.Model
 
         public int QtdPizza { get; set; }
 
+
+        public int IdCliente { get; set; }
+
         public Cliente Cliente { get; set; }
 
         public List<Pizza> Pizzas { get; set; }

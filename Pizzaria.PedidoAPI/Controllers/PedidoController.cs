@@ -6,7 +6,7 @@ using Pizzaria.PedidoAPI.Services.IServices;
 
 namespace Pizzaria.PedidoAPI.Controllers
 {
-    [Route("api/v1/")]
+    [Route("api/v1/Pedido")]
     [ApiController]
     public class PedidoController : Controller
     {

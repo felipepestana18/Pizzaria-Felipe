@@ -17,9 +17,9 @@ namespace Pizzaria.PizzaAPI.Model.Context
 
         public DbSet<Pedido> Pedidos { get; set; }
 
-        public DbSet<PedidoPizzas> PedidoPizzas { get; }
+        public DbSet<PedidoPizza> PedidoPizzas { get; set; }
 
-        public DbSet<PedidoBebidas> PedidoBebidas { get; set; }
+        public DbSet<PedidoBebida> PedidoBebidas { get; set; }
 
     }
 }

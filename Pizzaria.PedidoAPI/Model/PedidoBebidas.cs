@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Pizzaria.PedidoAPI.Model
 {
-    public class PedidoBebidas
+    public class PedidoBebida
     {
         [Key]
         public int Id { get; set; } 

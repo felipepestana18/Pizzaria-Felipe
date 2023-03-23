@@ -5,7 +5,7 @@ using Pizzaria.PizzaAPI.Repository;
 namespace Pizzaria.PizzaAPI.Controllers
 {
     [ApiController]
-    [Route("api/v1/")]
+    [Route("api/v1/Pizza/")]
     public class PizzaController : Controller
     {
         private readonly IPizzaRepository _Pizzarepository;
