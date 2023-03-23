@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Mvc;
 using Pizzaria.PedidoAPI.Model;
 using Pizzaria.PedidoAPI.Repository;
+using Pizzaria.PedidoAPI.Services.IServices;
 
 namespace Pizzaria.PedidoAPI.Controllers
 {

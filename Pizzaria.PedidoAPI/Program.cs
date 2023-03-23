@@ -27,11 +27,11 @@ builder.Services.AddControllers(options => options.SuppressImplicitRequiredAttri
 
 
 builder.Services.AddHttpClient<IPizzaService, PizzaService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:PizzaAPI"]));
-//builder.Services.AddHttpClient<ICartService, CartService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CartApi"]));
-//builder.Services.AddHttpClient<ICouponService, CouponService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:CouponApi"]));
+builder.Services.AddHttpClient<IBebidaService, BebidaService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:BebidaAPI"]));
+builder.Services.AddHttpClient<IClienteService, ClienteService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:ClienteAPI"]));
+builder.Services.AddHttpClient<IPizzaService, PizzaService>(c => c.BaseAddress = new Uri(builder.Configuration["ServiceUrls:PizzaAPI"]));
 
 builder.Services.AddScoped<IPedidoRepository, PedidoRepository>();
-
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSwaggerGen(c =>

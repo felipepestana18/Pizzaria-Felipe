@@ -1,5 +1,8 @@
-﻿namespace Pizzaria.PedidoAPI.Model
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Pizzaria.PedidoAPI.Model
 {
+    [NotMapped]
     public class Bebida
     {
 

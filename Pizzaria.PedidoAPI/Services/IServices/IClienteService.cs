@@ -1,12 +1,10 @@
-﻿using Pizzaria.PedidoAPI.Model.ViewModel;
+﻿using Pizzaria.ClienteAPI.Model;
+using Pizzaria.PedidoAPI.Model.ViewModel;
 
 namespace Pizzaria.PedidoAPI.Services.IServices
 {
-    public class IClienteService
+    public interface IClienteService
     {
-        public interface IPizzaService
-        {
-            Task<ClienteViewModel> GetClienteById(int id);
-        }
+        Task<Cliente> GetClienteById(int id);
     }
 }

@@ -9,16 +9,13 @@ namespace Pizzaria.PizzaAPI.Model.Context
     {
         public MySQLContext() { }
 
-        public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) { }
+        public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) { 
+        
+           
+        }
 
 
-        public DbSet<Pedido> Pedidos { get; set; }  
-
-        public DbSet<Bebida> Bebidas { get; set; }
-
-        public DbSet<Cliente> Clientes { get; }
-
-        public DbSet<Pizza> Pizzas { get; set; }
+        public DbSet<Pedido> Pedidos { get; set; }
 
         public DbSet<PedidoPizzas> PedidoPizzas { get; }
 

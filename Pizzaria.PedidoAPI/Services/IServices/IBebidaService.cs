@@ -1,11 +1,12 @@
-﻿using Pizzaria.PedidoAPI.Model.ViewModel;
+﻿using Pizzaria.PedidoAPI.Model;
+using Pizzaria.PedidoAPI.Model.ViewModel;
 
 namespace Pizzaria.PedidoAPI.Services.IServices
 {
 
     public interface IBebidaService
     {
-        Task<BebidaViewModel> GetBebidaById(int id);
+        Task<Bebida> GetBebidaById(int id);
     }
 
 }

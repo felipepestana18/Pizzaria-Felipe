@@ -3,6 +3,7 @@ using Pizzaria.PedidoAPI.Services.IServices;
 using System.Net.Http.Headers;
 using System.Net;
 using Pizzaria.PedidoAPI.Utils;
+using Pizzaria.PizzaAPI.Model;
 
 namespace Pizzaria.PedidoAPI.Services
 {
@@ -16,11 +17,11 @@ namespace Pizzaria.PedidoAPI.Services
             _client = client ?? throw new ArgumentException(nameof(client));
         }
          
-        public async Task<PizzaViewModel> GetPizzaById(int id)
+        public async Task<Pizza> GetPizzaById(int id)
         {
             var response = await _client.GetAsync($"{BasePath}/find-by-id/{id}");
-            if (response.StatusCode != HttpStatusCode.OK) return new PizzaViewModel();
-            return await response.ReadContentAs<PizzaViewModel>();
+            if (response.StatusCode != HttpStatusCode.OK) return new Pizza();
+            return await response.ReadContentAs<Pizza>();
         }
     }
     
